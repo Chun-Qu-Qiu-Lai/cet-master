@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shanzs.weixinapp.mapper.CetGroupAndOptionMapper">
+    <resultMap id="OptionMap" type="com.shanzs.weixinapp.entity.OptionTest">
+        <result property="id" column="id"/>
+        <result property="question" column="question"/>
+        <result property="option_a" column="option_a"/>
+        <result property="option_b" column="option_b"/>
+        <result property="option_c" column="option_c"/>
+        <result property="option_d" column="option_d"/>
+        <result property="answer" column="answer"/>
+        <result property="description" column="description"/>
+    </resultMap>
+    <select id="selectCetFourYear" resultType="com.shanzs.weixinapp.entity.DifferentYear">
+        select *
+        from cet_four_year
+    </select>
+
+    <select id="selectCetSixYear" resultType="com.shanzs.weixinapp.entity.DifferentYear">
+        select *
+        from cet_six_year
+    </select>
+    <select id="selectCetFourPaper" resultType="com.shanzs.weixinapp.entity.TestPaper">
+        select *
+        from cet_four_paper
+    </select>
+    <select id="selectCetSixPaper" resultType="com.shanzs.weixinapp.entity.TestPaper">
+        select *
+        from cet_six_paper
+    </select>
+    <select id="selectCetFourOption" parameterType="map" resultMap="OptionMap">
+        select *
+        from cet_four_option
+        where year_by_id = #{yearId}
+          and belong_to = #{belongTo}
+          and test_part = #{section}
+        order by id asc
+    </select>
+    <select id="selectCetSixOption" parameterType="map" resultMap="OptionMap">
+        select *
+        from cet_six_option
+        where year_by_id = #{yearId}
+          and belong_to = #{belongTo}
+          and test_part = #{section}
+        order by id asc
+    </select>
+    <select id="selectCetFourAllOption" parameterType="map" resultMap="OptionMap">
+        select *
+        from cet_four_option
+        where year_by_id = #{yearId}
+          and belong_to = #{belongTo}
+        order by id asc
+    </select>
+    <select id="selectCetSixAllOption" parameterType="map" resultMap="OptionMap">
+        select *
+        from cet_six_option
+        where year_by_id = #{yearId}
+          and belong_to = #{belongTo}
+        order by id asc
+    </select>
+</mapper>

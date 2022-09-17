@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shanzs.weixinapp.mapper.UserMapper">
+    <resultMap id="userInfo" type="com.shanzs.weixinapp.entity.User">
+        <result property="id" column="id"/>
+        <result property="openid" column="openid"/>
+        <result property="sessionKey" column="session_key"/>
+        <result property="avatarUrl" column="avatarUrl"/>
+        <result property="nickName" column="nickName"/>
+        <result property="optionBackColorR" column="option_backColor_R"/>
+        <result property="optionBackColorG" column="option_backColor_G"/>
+        <result property="optionBackColorB" column="option_backColor_B"/>
+        <result property="optionBackColorA" column="option_backColor_A"/>
+        <result property="optionCorrectBackColorR" column="option_correct_BackColor_R"/>
+        <result property="optionCorrectBackColorG" column="option_correct_BackColor_G"/>
+        <result property="optionCorrectBackColorB" column="option_correct_BackColor_B"/>
+        <result property="optionCorrectBackColorA" column="option_correct_BackColor_A"/>
+        <result property="deepChecklistTextFontSize" column="deep_checklist_text_font_size"/>
+        <result property="optionStyle" column="option_style"/>
+        <result property="createTime" column="create_time"/>
+    </resultMap>
+    <insert id="insertUser">
+        insert into app.user (openid, session_key, avatarUrl, nickName)
+        values (#{openid}, #{session_key}, #{avatarUrl}, #{nickName})
+    </insert>
+    <select id="selectUserByOpenid" resultMap="userInfo">
+        select nickName,
+               avatarUrl,
+               option_backColor_R,
+               option_backColor_G,
+               option_backColor_B,
+               option_backColor_A,
+               option_correct_BackColor_R,
+               option_correct_BackColor_G,
+               option_correct_BackColor_B,
+               option_correct_BackColor_A,
+               deep_checklist_text_font_size,
+               option_style
+        from app.user
+        where openid = #{openid}
+    </select>
+    <update id="updateUserSetInfo" parameterType="map">
+        update user
+        set deep_checklist_text_font_size=#{deepChecklistTextFontSize},
+            option_style=#{optionStyle},
+            option_backColor_R=#{optionBackColorR},
+            option_backColor_G=#{optionBackColorG},
+            option_backColor_B=#{optionBackColorB},
+            option_backColor_A=#{optionBackColorA},
+            option_correct_BackColor_R=#{optionCorrectBackColorR},
+            option_correct_BackColor_G=#{optionCorrectBackColorG},
+            option_correct_BackColor_B=#{optionCorrectBackColorB},
+            option_correct_BackColor_A=#{optionCorrectBackColorA}
+        where openid = #{openid}
+    </update>
+</mapper>
+

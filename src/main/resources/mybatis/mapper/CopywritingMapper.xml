@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shanzs.weixinapp.mapper.CopyWritingMapper">
+    <resultMap id="OptionMap" type="com.shanzs.weixinapp.entity.CopyWriting">
+        <result property="id" column="id"/>
+        <result property="content" column="content"/>
+        <result property="source" column="source"/>
+        <result property="create_time" column="create_time"/>
+    </resultMap>
+    <select id="findCopyWritingByRandomId"
+            resultMap="OptionMap"
+    >
+        SELECT *
+        FROM cet_copy_writing AS t1
+                 JOIN (SELECT ROUND(RAND() *
+                                    ((SELECT MAX(id) FROM `cet_copy_writing`) - (SELECT MIN(id) FROM cet_copy_writing)) +
+                                    (SELECT MIN(id) FROM cet_copy_writing)) AS id) AS t2
+        WHERE t1.id >= t2.id
+        ORDER BY t1.id
+        LIMIT 1
+    </select>
+
+</mapper>

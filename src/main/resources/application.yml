@@ -1,0 +1,39 @@
+server:
+  port: 8087
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://47.93.50.126:3306/app?serverTimezone=UTC&useUnicode=true&characterEncoding=UTF-8
+    username: weixinapp
+    password: 724318787
+  redis:
+    database: 5
+    host: 47.93.50.126
+    port: 6379
+    password: redis724318787
+    jedis:
+      pool:
+        max-active: 200
+        max-wait: -1
+        max-idle: 10
+        min-idle: 0
+      timeout: 6000
+# mybatis配置
+mybatis:
+  # 配置mapper的扫描，找到所有的mapper.xml映射文件
+  mapper-locations: classpath:mybatis/mapper/*.xml
+  # 静态目录配置
+  mvc:
+    static-path-pattern: /**
+  web:
+    resources:
+      # 静态目录地址
+      static-locations: classpath:/static
+
+
+
+
+
+
+
+

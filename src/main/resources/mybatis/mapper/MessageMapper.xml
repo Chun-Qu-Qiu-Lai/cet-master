@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shanzs.weixinapp.mapper.MessageMapper">
+    <resultMap id="MessageMap" type="com.shanzs.weixinapp.entity.Message">
+        <result property="id" column="id"/>
+        <result property="message" column="message"/>
+        <result property="create_time" column="create_time"/>
+    </resultMap>
+    <select id="selectMessage" resultMap="MessageMap">
+        select *
+        from cet_set_message
+        order by id desc
+    </select>
+    <insert id="insertFeedMessage" parameterType="String">
+        insert into cet_set_feedmssage (feed_message) value (#{feedMessage})
+    </insert>
+</mapper>
