@@ -15,7 +15,7 @@
         SELECT *
         FROM cet_copy_writing AS t1
                  JOIN (SELECT ROUND(RAND() *
-                                    ((SELECT MAX(id) FROM `cet_copy_writing`) - (SELECT MIN(id) FROM cet_copy_writing)) +
+                                    ((SELECT MAX(id) FROM cet_copy_writing) - (SELECT MIN(id) FROM cet_copy_writing)) +
                                     (SELECT MIN(id) FROM cet_copy_writing)) AS id) AS t2
         WHERE t1.id >= t2.id
         ORDER BY t1.id

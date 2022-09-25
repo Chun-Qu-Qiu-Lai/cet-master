@@ -34,7 +34,7 @@ public class OptionController {
                            @RequestParam("yearid") int yearId,
                            @RequestParam("belongto") int belongTo,
                            @RequestParam(value = "section", required = false) Integer section) {
-    System.out.println(section);
+
      List<List<ResultOption>> options = optionService.getOption(cetFourOrSix,yearId, belongTo, section);
     return Result.success(200, "请求成功", options);
   }
