@@ -54,6 +54,7 @@ public class UserController {
     Map resMap = new CodeUtil().getRes(code);
     String openid = (String) resMap.get("openid");
     String sessionKey = (String) resMap.get("session_key");
+    System.out.println(sessionKey);
     boolean auth = userService.authorization(openid, sessionKey, avatarUrl, nickName);
     if (!auth) {
       return Result.success(403, "授权失败");

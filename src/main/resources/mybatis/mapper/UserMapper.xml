@@ -23,7 +23,7 @@
     </resultMap>
     <insert id="insertUser">
         insert into app.user (openid, session_key, avatarUrl, nickName)
-        values (#{openid}, #{session_key}, #{avatarUrl}, #{nickName})
+        values (#{openid}, #{sessionKey}, #{avatarUrl}, #{nickName})
     </insert>
     <select id="selectUserByOpenid" resultMap="userInfo">
         select nickName,
