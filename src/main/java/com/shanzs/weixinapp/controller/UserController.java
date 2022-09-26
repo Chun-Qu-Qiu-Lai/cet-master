@@ -89,6 +89,9 @@ public class UserController {
    */
   @GetMapping("/user/getUserInfo")
   private Result getUserInfo(@RequestHeader("Authorization") String authorizationJwt) throws IOException {
+    if (authorizationJwt == null) {
+      return Result.success(401, "token不存在");
+    }
     String token = authorizationJwt.substring(6);
     String openid = new JwtUtil().parseToken(token);
     User user = userMapper.selectUserByOpenid(openid);
@@ -129,11 +132,11 @@ public class UserController {
     optionSetInfo.put("selectedColorP", selectedColorP);
     optionSetInfo.put("correctionColorP", correctionColorP);
 
-    Map<String, Object> R = new LinkedHashMap<>();
-    R.put("userInfo", userInfo);
-    R.put("optionSetInfo", optionSetInfo);
-    R.put("setInfo", setInfo);
-    return Result.success(200, "获取用户信息成功", R);
+    Map<String, Object> res = new LinkedHashMap<>();
+    res.put("userInfo", userInfo);
+    res.put("optionSetInfo", optionSetInfo);
+    res.put("setInfo", setInfo);
+    return Result.success(200, "获取用户信息成功", res);
   }
 
   /**

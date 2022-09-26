@@ -3,9 +3,9 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/app?serverTimezone=UTC&useUnicode=true&characterEncoding=UTF-8
-    username: root
-    password: 724318787
+    url: jdbc:mysql://localhost:3306/cet_app?serverTimezone=UTC&useUnicode=true&characterEncoding=UTF-8
+    username: cet_app
+    password: mysql724318787
   redis:
     database: 5
     host: localhost
